@@ -1,0 +1,4 @@
+Author: Richard E. Polivka
+Symptom: X2 / Y2 gantry steppers were not moving while X1 / Y gantry steppers were moving. This was occuring the handling of a G2/G3 move.
+Discussion: Home positions were not being set in sys_position for steppers X2 / Y2. These should match positions for X1 / Y1.
+Solution: Added switch/case statement in limits.c as lines 634-644 and commented out line 633.

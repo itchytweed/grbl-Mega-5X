@@ -630,7 +630,18 @@ void limits_go_home(uint8_t cycle_mask)
           sys_position[idx] = set_axis_position;
         }
       #else
-        sys_position[idx] = set_axis_position;
+        //sys_position[idx] = set_axis_position;
+        switch[idx] {   // added switch/case to copy over the home positions from x1 to x2 and y1 to y2
+            case 0: // x1
+            case 1: // y1
+            case 2: // z
+                sys_position[idx] = set_axis_position;
+                break;
+            case 3: // x2
+            case 4: // y2
+                sys_position[idx] = sys_position[idx-3];    // copy frm axis stpr 1 to axis stpr 2
+                break;
+        }
       #endif
 
     }
